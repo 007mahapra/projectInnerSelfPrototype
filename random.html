@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            background: #000;
+        }
+
+        #question-container {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        #video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        #options button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+            font-size: 16px;
+            width: 80%; /* Adjust the width as needed */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="video-container">
+        <video id="background-video" muted loop autoplay>
+            <!-- Placeholder video source, replace with actual video files -->
+            <source src="video_placeholder.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div id="question-container">
+        <h1 id="question">Question 1</h1>
+        <div id="options">
+            <button onclick="checkAnswer('A')">Option A</button><br>
+            <button onclick="checkAnswer('B')">Option B</button><br>
+            <button onclick="checkAnswer('C')">Option C</button><br>
+            <button onclick="checkAnswer('D')">Option D</button><br>
+        </div>
+        <p id="feedback"></p>
+    </div>
+
+    <script>
+
+        const questionSets = [
+            [
+                { id: 1, question: "How do you typically react to unexpected setbacks in your life?", options: ["Embrace the challenge and seek solutions", "Reflect on the lessons learned", "Seek comfort from friends or family", "Feel defeated and dwell on the negativity"], correctAnswer: "A", videoSrc: "video_set1_1.mp4" },
+                { id: 2, question: "In times of conflict, what approach resonates with your inner self?", options: ["Seeking understanding and compromise", "Holding onto personal beliefs without compromise", "Avoiding confrontation to maintain peace", "Reacting emotionally without considering consequences"], correctAnswer: "A", videoSrc: "video_set1_2.mp4" },
+                { id: 3, question: "How do you typically handle regret or guilt over past actions?", options: ["Learn from mistakes and focus on personal growth", "Seek forgiveness and make amends", "Suppress emotions and avoid facing guilt", "Blame external factors to alleviate personal responsibility"], correctAnswer: "A", videoSrc: "video_set1_3.mp4" },
+                { id: 4, question: "When reflecting on your life, what emotion dominates your inner dialogue?", options: ["Gratitude for the journey and experiences", "Ambition and desire for continuous improvement", "Anxiety about the future and what lies ahead", "Regret or dissatisfaction with past decisions"], correctAnswer: "A", videoSrc: "video_set1_4.mp4" }
+            ],
+            [
+                { id: 5, question: "When faced with criticism, how does your inner self respond?", options: ["Defensively, with a need to prove oneself", "Reflectively, considering the validity of the feedback", "Ignoring it, focusing on positive aspects", "Feeling defeated, taking it personally"], correctAnswer: "A", videoSrc: "video_set2_1.mp4" },
+                { id: 6, question: "In the pursuit of happiness, what is your inner self's primary driver?", options: ["Accumulating material possessions and wealth", "Cultivating meaningful relationships", "Personal achievements and success", "Enjoying simple pleasures in daily life"], correctAnswer: "A", videoSrc: "video_set2_2.mp4" },
+                { id: 7, question: "How does your inner self perceive the concept of forgiveness?", options: ["Holding onto grudges and seeking revenge", "Letting go and embracing forgiveness for inner peace", "Seeking apologies and validation from others", "Avoiding conflicts to prevent the need for forgiveness"], correctAnswer: "A", videoSrc: "video_set2_3.mp4" },
+                { id: 8, question: "What role does your inner self play in your daily gratitude practice?", options: ["Rarely acknowledging or expressing gratitude", "Consistently appreciating and reflecting on blessings", "Focusing on external achievements rather than gratitude", "Feeling entitled and expecting more without gratitude"], correctAnswer: "A", videoSrc: "video_set2_4.mp4" },
+            ],
+            [
+                { id: 9, question: "How does your inner self perceive the concept of time?", options: ["Constantly worrying about the past or future", "Embracing the present moment with mindfulness", "Planning meticulously for future events", "Ignoring the concept of time and living spontaneously"], correctAnswer: "A", videoSrc: "video_set3_1.mp4" },
+                { id: 10, question: "Someone criticizes your work. You feel:", options: ["Deflated and question your competence", "Defensive and argue your point of view", "Open to understanding the feedback and learning from it", "Indifferent, as their opinion doesn't define your worth"], correctAnswer: "A", videoSrc: "video_set3_2.mp4" },
+                { id: 11, question: "When reflecting on your past, you focus on:", options: ["The regrets and missed opportunities", "The triumphs and lessons learned", "A mix of both, accepting the journey as a whole", "The present moment and future possibilities"], correctAnswer: "A", videoSrc: "video_set3_3.mp4" },
+                { id: 12, question: "When reflecting on your past, you focus on:", options: ["The regrets and missed opportunities", "The triumphs and lessons learned", "A mix of both, accepting the journey as a whole", "The present moment and future possibilities"], correctAnswer: "A", videoSrc: "video_set3_4.mp4" },
+            ],
+            // Add more question sets as needed
+        ];
+
+        // ... (rest of the script remains unchanged)
+
+
+
+
+        const questionSetsDummy = [
+            [
+                { id: 1, question: "What is the capital of France?", options: ["Paris", "Berlin", "Madrid", "Rome"], correctAnswer: "A", videoSrc: "video_paris.mp4" },
+                { id: 2, question: "Which planet is known as the Red Planet?", options: ["Earth", "Mars", "Jupiter", "Venus"], correctAnswer: "B", videoSrc: "video_mars.mp4" },
+                { id: 3, question: "What is the largest mammal in the world?", options: ["Elephant", "Blue Whale", "Giraffe", "Hippopotamus"], correctAnswer: "B", videoSrc: "video_whale.mp4" },
+                { id: 4, question: "Who wrote 'Romeo and Juliet'?", options: ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"], correctAnswer: "B", videoSrc: "video_shakespeare.mp4" }
+            ],
+            [
+                { id: 5, question: "What is the capital of Japan?", options: ["Beijing", "Tokyo", "Seoul", "Bangkok"], correctAnswer: "B", videoSrc: "video_tokyo.mp4" },
+                { id: 6, question: "Which element has the chemical symbol 'O'?", options: ["Oxygen", "Gold", "Iron", "Silver"], correctAnswer: "A", videoSrc: "video_oxygen.mp4" },
+                { id: 7, question: "Who painted the Mona Lisa?", options: ["Vincent van Gogh", "Leonardo da Vinci", "Pablo Picasso", "Claude Monet"], correctAnswer: "B", videoSrc: "video_monalisa.mp4" },
+                { id: 8, question: "What is the largest ocean on Earth?", options: ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"], correctAnswer: "D", videoSrc: "video_pacific.mp4" }
+            ]
+            // Add more question sets as needed
+        ];
+
+        let currentQuestionIndex = 0;
+        let currentSetIndex = Math.floor(Math.random() * questionSets.length);
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function loadQuestion() {
+            const questionElement = document.getElementById('question');
+            const optionsElement = document.getElementById('options');
+            const backgroundVideo = document.getElementById('background-video');
+            const feedbackElement = document.getElementById('feedback');
+
+            if (currentQuestionIndex < questionSets[currentSetIndex].length) {
+                const currentQuestion = questionSets[currentSetIndex][currentQuestionIndex];
+
+                questionElement.textContent = currentQuestion.question;
+
+                optionsElement.innerHTML = "";
+                shuffleArray(currentQuestion.options);
+                currentQuestion.options.forEach((option, index) => {
+                    const button = document.createElement('button');
+                    button.textContent = option;
+                    button.onclick = () => checkAnswer(String.fromCharCode(65 + index));
+                    optionsElement.appendChild(button);
+                });
+
+                backgroundVideo.src = currentQuestion.videoSrc;
+                backgroundVideo.load();
+                backgroundVideo.play();
+
+                feedbackElement.textContent = "";
+            } else {
+                document.getElementById('question-container').innerHTML = `<h1>${getUniqueThanksMessage(currentSetIndex)}</h1>`;
+            }
+        }
+
+        function getUniqueThanksMessage(setIndex) {
+            // Add unique thanks messages corresponding to each set
+            const thanksMessages = [
+                "Thanks for participating in Set 1!",
+                "Well done! You completed Set 2!",
+                // Add more unique thanks messages as needed
+            ];
+
+            return thanksMessages[setIndex] || "Thanks for participating!";
+        }
+
+        function checkAnswer(selectedOption) {
+            const currentQuestion = questionSets[currentSetIndex][currentQuestionIndex];
+            const correctAnswer = currentQuestion.correctAnswer;
+            const feedbackElement = document.getElementById('feedback');
+
+            if (selectedOption === correctAnswer) {
+                feedbackElement.textContent = "Correct!";
+            } else {
+                feedbackElement.textContent = "Incorrect. Try again!";
+            }
+
+            currentQuestionIndex++;
+
+            if (currentQuestionIndex <= questionSets[currentSetIndex].length) {
+                loadQuestion();
+            } else {
+                currentSetIndex = Math.floor(Math.random() * questionSets.length);
+                currentQuestionIndex = 0;
+                loadQuestion();
+            }
+        }
+
+        // Load the first question when the page loads
+        loadQuestion();
+    </script>
+</body>
+
+</html>
