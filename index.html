@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled Radio Buttons as Buttons</title>
+    <style>
+        /* Hide the actual radio buttons */
+        input[type="radio"] {
+            display: none;
+        }
+
+        /* Style for the label, making it look like a button */
+        label.radio-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #333;
+            border: 1px solid #333;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Change the background color of the label when hovered */
+        label.radio-button:hover {
+            background-color: #555;
+        }
+
+        /* Change the background color of the label when the radio button is checked */
+        input[type="radio"]:checked+label.radio-button {
+            background-color: #555;
+        }
+
+        .next-button {
+            background-color: #4CAF50;
+            /* Green background color */
+            color: white;
+            /* Text color */
+            padding: 10px 20px;
+            /* Padding */
+            border: none;
+            /* No border */
+            border-radius: 5px;
+            /* Rounded corners */
+            cursor: pointer;
+            /* Cursor style */
+            font-size: 16px;
+            /* Font size */
+            transition: background-color 0.3s ease;
+            /* Smooth transition effect */
+        }
+
+        .next-button span {
+            margin-right: 5px;
+            /* Space between icon and text */
+        }
+
+        .next-button:hover {
+            background-color: #45a049;
+            /* Darker green color on hover */
+        }
+
+        .next-button:focus {
+            outline: none;
+            /* Remove outline on focus */
+        }
+
+        .next-button:active {
+            background-color: #398438;
+            /* Darker green color when button is pressed */
+        }
+    </style>
+   
+</head>
+
+<body>
+    <div id="langlabel" align="center">
+        <h5>Language</h5>
+        <div>
+
+            <div id="language" align="center">
+                <!-- Radio buttons with labels styled as buttons -->
+                <input type="radio" id="english" name="langoptions" value="English">
+                <label for="english" class="radio-button">English</label>
+
+                <input type="radio" id="hindi" name="langoptions" value="Hindi">
+                <label for="hindi" class="radio-button">Hindi</label>
+
+                <input type="radio" id="marathi" name="langoptions" value="Marathi">
+                <label for="marathi" class="radio-button">Marathi</label>
+
+                <input type="radio" id="malay" name="langoptions" value="Malay">
+                <label for="malay" class="radio-button">Malay</label>
+
+                <input type="radio" id="punjabi" name="langoptions" value="Punjabi">
+                <label for="punjabi" class="radio-button">Punjabi</label>
+            </div>
+            <div id="agelabel" align="center">
+                <h5>Age Group</h5>
+                <div>
+                    <div id="age" align="center">
+                        <!-- Radio buttons with labels styled as buttons -->
+                        <input type="radio" id="5_12" name="ageoptions" value="5_12">
+                        <label for="5_12" class="radio-button">5-12</label>
+
+                        <input type="radio" id="13_18" name="ageoptions" value="13_18">
+                        <label for="13_18" class="radio-button">13-18</label>
+
+                        <input type="radio" id="19_24" name="ageoptions" value="19_24">
+                        <label for="19_24" class="radio-button">19-24</label>
+
+                        <input type="radio" id="25_40" name="ageoptions" value="25_40">
+                        <label for="25_40" class="radio-button">25-40</label>
+
+                        <input type="radio" id="41_55" name="ageoptions" value="41_55">
+                        <label for="41_55" class="radio-button">41-55</label>
+
+                        <input type="radio" id="56_above" name="ageoptions" value="56_above">
+                        <label for="56_above" class="radio-button">56 and above</label>
+                    </div>
+                    <br />
+                    <div align="center">
+                        <button class="next-button" id="nextButton">Next<span>&rarr;</span> </button>
+                    </div>
+</body>
+<script>
+    document.getElementById("nextButton").addEventListener("click", function() {
+// Get the value of the selected radio button
+var ageOption = document.querySelector('input[name="ageoptions"]:checked');
+var langOption= document.querySelector('input[name="langoptions"]:checked');
+if (ageOption && langOption) {
+    // Navigate to the next page with the selected value appended to the URL
+    window.location.href = "random.html?lang=" + langOption.value+ "&age="+ageOption.value;
+} else {
+    alert("Please select an option.");
+}
+});
+
+</script>
+</html>

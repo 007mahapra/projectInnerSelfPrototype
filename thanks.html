@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled Radio Buttons as Buttons</title>
+    <style>
+        /* Hide the actual radio buttons */
+        input[type="radio"] {
+            display: none;
+        }
+
+        /* Style for the label, making it look like a button */
+        label.radio-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #333;
+            border: 1px solid #333;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Change the background color of the label when hovered */
+        label.radio-button:hover {
+            background-color: #555;
+        }
+
+        /* Change the background color of the label when the radio button is checked */
+        input[type="radio"]:checked+label.radio-button {
+            background-color: #555;
+        }
+
+        .next-button {
+            background-color: #4CAF50;
+            /* Green background color */
+            color: white;
+            /* Text color */
+            padding: 10px 20px;
+            /* Padding */
+            border: none;
+            /* No border */
+            border-radius: 5px;
+            /* Rounded corners */
+            cursor: pointer;
+            /* Cursor style */
+            font-size: 16px;
+            /* Font size */
+            transition: background-color 0.3s ease;
+            /* Smooth transition effect */
+        }
+
+        .next-button span {
+            margin-right: 5px;
+            /* Space between icon and text */
+        }
+
+        .next-button:hover {
+            background-color: #45a049;
+            /* Darker green color on hover */
+        }
+
+        .next-button:focus {
+            outline: none;
+            /* Remove outline on focus */
+        }
+
+        .next-button:active {
+            background-color: #398438;
+            /* Darker green color when button is pressed */
+        }
+        .home-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 40px; /* Adjust size as needed */
+            height: 40px; /* Adjust size as needed */
+            cursor: pointer;
+        }
+    </style>
+   
+</head>
+
+<body>
+    <a href="index.html"><img src="home.png" alt="Home" class="home-icon"></a>
+    
+</body>
+<script>
+    document.getElementById("nextButton").addEventListener("click", function() {
+// Get the value of the selected radio button
+var ageOption = document.querySelector('input[name="ageoptions"]:checked');
+var langOption= document.querySelector('input[name="langoptions"]:checked');
+if (ageOption && langOption) {
+    // Navigate to the next page with the selected value appended to the URL
+    window.location.href = "random.html?lang=" + langOption.value+ "&age="+ageOption.value;
+} else {
+    alert("Please select an option.");
+}
+});
+
+</script>
+</html>
