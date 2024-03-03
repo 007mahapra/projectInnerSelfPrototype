@@ -12,7 +12,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            height: 97vh;
             font-family: 'Arial', sans-serif;
             color: #fff;
             background: #000;
@@ -33,7 +33,7 @@
             left: 0;
             width: 50%;
             height: 50%;
-            object-fit: cover;
+            object-fit: none;
             z-index: 0;
         }
 
@@ -58,7 +58,7 @@
 <body>
     <div id="video-container">
      
-        <video id="background-video" muted loop autoplay>
+        <video id="background-video" muted loop autoplay style="width: 100vw;height:100vh">
             <!-- Placeholder video source, replace with actual video files -->
             <source src="video_placeholder.mp4" type="video/mp4">
         </video>
