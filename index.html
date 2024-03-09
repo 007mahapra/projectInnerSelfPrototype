@@ -87,7 +87,7 @@
 
   .glass-container {
     background: rgba(255, 255, 255, 0.15); /* Adjust opacity as needed */
-    backdrop-filter: blur(10px); /* Adjust blur amount as needed */
+   /* backdrop-filter: blur(10px); *//* Adjust blur amount as needed */
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adjust shadow as needed */
@@ -112,7 +112,7 @@
     transition: all 0.3s ease;
     background-color: rgba(255, 255, 255, 0.2);
     /*background-image: linear-gradient(to right, #FF416C, #FF4B2B);*/
-    backdrop-filter: blur(10px);
+   /* backdrop-filter: blur(10px);*/
     box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
   }
 
@@ -153,72 +153,65 @@
     transform: scale(1.1);
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.5);
   }
+  .video-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .door-container 
+  {
+  perspective: 1000px;
+}
+
+/* Styles for the door */
+.door {
+  transform-origin: left center;
+  transition: transform 1s; /* Adjust the duration as needed */
+}
+
+/* Open door animation */
+.door.open {
+  transform: rotateY(-90deg);
+}
     </style>
    
 </head>
 
 <body>
-    <div class="glass-container">
-    <div id="langlabel" align="center">
-        <h5>Language</h5>
-        <div>
+    
 
-            <div id="language" align="center">
-                <!-- Radio buttons with labels styled as buttons -->
-                <input type="radio" id="english" name="langoptions" value="English">
-                <label for="english" class="glass-button">English</label>
+   
+   <!--  <button class="glass-button"  onclick="openDoor()" id="nextButto"></button>-->
+    <div class="glass-container door" id="div1">
+    <!-- Video element -->
+  <video id="myVideo" autoplay playsinline muted loop style="height:100vw;width:100vh">
+    <source src="home.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
 
-                <input type="radio" id="hindi" name="langoptions" value="Hindi">
-                <label for="hindi" class="glass-button">Hindi</label>
+</div>
+<div>
+    <button class="lock-button" id="nextButton" style="position:absolute;top:0;right:0" 
+    onclick="openDoor()" title="btn" ></button>
+</div>
 
-                <input type="radio" id="marathi" name="langoptions" value="Marathi">
-                <label for="marathi" class="glass-button">Marathi</label>
+  <!-- JavaScript to play the video -->
+  <script>
+    function openDoor() {
+      document.querySelector('#div1').classList.add('open');
+      setTimeout(function() {
+        window.location.href = 'home.html';
+      }, 500); // Change 1000 to match the duration of your animation
+    }
 
-                <input type="radio" id="malay" name="langoptions" value="Malay">
-                <label for="malay" class="glass-button">Malay</label>
-
-                <input type="radio" id="punjabi" name="langoptions" value="Punjabi">
-                <label for="punjabi" class="glass-button">Punjabi</label>
-            </div>
-            <div id="agelabel" align="center">
-                <h5>Age Group</h5>
-                <div>
-                    <div id="age" align="center">
-                        <!-- Radio buttons with labels styled as buttons -->
-                        <input type="radio" id="5_12" name="ageoptions" value="5_12">
-                        <label for="5_13" class="glass-button">5-12</label>
-
-                        <input type="radio" id="13_18" name="ageoptions" value="13_18">
-                        <label for="13_18" class="glass-button">13-18</label>
-
-                        <input type="radio" id="19_25" name="ageoptions" value="19_25">
-                        <label for="19_25" class="glass-button">19-25</label>
-
-                        <input type="radio" id="26_55" name="ageoptions" value="26_55">
-                        <label for="26_55" class="glass-button">26-55</label>
-
-                        <input type="radio" id="56_above" name="ageoptions" value="56_above">
-                        <label for="56_above" class="glass-button">56 and above</label>
-                    </div>
-                    <br />
-                    <br/>
-                    <div align="center">
-                        <button class="lock-button" id="nextButton"></button>
-                    </div>
-                </div>
+    function callNextPage() {
+        window.location.href = "index.html";
+    }
+  </script>
 </body>
-<script>
-    document.getElementById("nextButton").addEventListener("click", function() {
-// Get the value of the selected radio button
-var ageOption = document.querySelector('input[name="ageoptions"]:checked');
-var langOption= document.querySelector('input[name="langoptions"]:checked');
-if (ageOption && langOption) {
-    // Navigate to the next page with the selected value appended to the URL
-    window.location.href = "loading.html?lang=" + langOption.value+ "&age="+ageOption.value;
-} else {
-    alert("Please select an option.");
-}
-});
 
-</script>
 </html>
