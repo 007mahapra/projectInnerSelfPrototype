@@ -42,14 +42,18 @@
             margin: 10px auto;
             padding: 10px;
             font-size: 16px;
-            width: 80%; /* Adjust the width as needed */
+            width: 80%;
+            /* Adjust the width as needed */
         }
+
         .home-icon {
             position: fixed;
             top: 20px;
             right: 20px;
-            width: 40px; /* Adjust size as needed */
-            height: 40px; /* Adjust size as needed */
+            width: 40px;
+            /* Adjust size as needed */
+            height: 40px;
+            /* Adjust size as needed */
             cursor: pointer;
         }
     </style>
@@ -57,7 +61,7 @@
 
 <body>
     <div id="video-container">
-     
+
         <video id="background-video" muted loop autoplay style="width: 100vw;height:100vh;object-fit:cover">
             <!-- Placeholder video source, replace with actual video files -->
             <source src="video_placeholder.mp4" type="video/mp4">
@@ -75,6 +79,66 @@
     </div>
 
     <script>
+
+        // Get the URL parameters
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+
+        // Get the value of the 'lang' parameter
+        const langValue = urlParams.get('lang');
+
+        // Get the value of the 'age' parameter
+        const ageValue = urlParams.get('age');
+
+        // Display the values
+        console.log("Language:", langValue);
+        console.log("Age:", ageValue);
+
+
+
+        const questionSets2 = [
+            [
+                { id: 1, question: "How do you show gratitude to someone who helped you?", options: ["Say thank you and give them a hug", "Ignore them and walk away", "Tell them they didn't really help", "Laugh at them and walk away"], correctAnswer: "A", videoSrc: "video_set1_1.mp4" },
+                { id: 2, question: "How do you show kindness to others?", options: ["Sharing your toys", "Saying please and thank you", "Helping someone who is hurt", "Ignoring others when they need help"], correctAnswer: "A", videoSrc: "video_set1_2.mp4" },
+                { id: 3, question: "Imagine a world where everyone is kind and helpful. What would it look and feel like?", options: ["Peaceful and full of smiles.", "Everyone shares and plays together.", "People help each other when needed.", "All of the above."], correctAnswer: "A", videoSrc: "video_set1_3.mp4" },
+                { id: 4, question: "Sometimes, we make mistakes. What can we do afterwards to make things right?", options: ["Say sorry and try to fix what went wrong.", "Learn from the mistake and do better next time.", "Both a and b.", "Neither, just pretend it didn't happen."], correctAnswer: "A", videoSrc: "video_set1_4.mp4" }
+            ],
+            [
+                { id: 5, question: "Sometimes, life can be challenging. What helps you stay strong and hopeful?", options: ["Spending time with loved ones.", "Staying positive and keeping faith in God.", "Knowing that challenges can teach us things.", "Keeping yourself cut from the world"], correctAnswer: "A", videoSrc: "video_set2_1.mp4" },
+                { id: 6, question: "What can you do to forgive yourself and others when mistakes happen?", options: ["Learn from them and try to do better next time.", "Understand that everyone makes mistakes.", "Talk about it with someone you trust.", "Forget and forgive."], correctAnswer: "A", videoSrc: "video_set2_2.mp4" },
+                { id: 7, question: "When you feel nervous about an upcoming test at school, what helps you feel calm and confident?", options: ["Asking for help from your teacher or classmates", "Taking deep breaths and reminding yourself of your strengths", "Run away from the test.", "Remembering everyone feels nervous sometimes."], correctAnswer: "A", videoSrc: "video_set2_3.mp4" },
+                { id: 8, question: "If you could write a message on a shooting star, what would you ask for?", options: ["A message of love for your family", "Keep yourself positive and hopeful no matter what", "A message of peace for the world", "Better marks than friends in the school"], correctAnswer: "A", videoSrc: "video_set2_4.mp4" },
+            ],
+            [
+                { id: 9, question: "How does your inner self perceive the concept of time?", options: ["Constantly worrying about the past or future", "Embracing the present moment with mindfulness", "Planning meticulously for future events", "Ignoring the concept of time and living spontaneously"], correctAnswer: "A", videoSrc: "video_set3_1.mp4" },
+                { id: 10, question: "Someone criticizes your work. You feel:", options: ["Deflated and question your competence", "Defensive and argue your point of view", "Open to understanding the feedback and learning from it", "Indifferent, as their opinion doesn't define your worth"], correctAnswer: "A", videoSrc: "video_set3_2.mp4" },
+                { id: 11, question: "When reflecting on your past, you focus on:", options: ["The regrets and missed opportunities", "The triumphs and lessons learned", "A mix of both, accepting the journey as a whole", "The present moment and future possibilities"], correctAnswer: "A", videoSrc: "video_set3_3.mp4" },
+                { id: 12, question: "When reflecting on your past, you focus on:", options: ["The regrets and missed opportunities", "The triumphs and lessons learned", "A mix of both, accepting the journey as a whole", "The present moment and future possibilities"], correctAnswer: "A", videoSrc: "video_set3_4.mp4" },
+            ],
+            // Add more question sets as needed
+        ];
+
+        const eng_ = [
+            [
+                { id: 1, question: "How do you show gratitude to someone who helped you?", options: ["Say thank you and give them a hug", "Ignore them and walk away", "Tell them they didn't really help", "Laugh at them and walk away"], correctAnswer: "A", videoSrc: "video_set1_1.mp4" },
+                { id: 2, question: "How do you show kindness to others?", options: ["Sharing your toys", "Saying please and thank you", "Helping someone who is hurt", "Ignoring others when they need help"], correctAnswer: "A", videoSrc: "video_set1_2.mp4" },
+                { id: 3, question: "Imagine a world where everyone is kind and helpful. What would it look and feel like?", options: ["Peaceful and full of smiles.", "Everyone shares and plays together.", "People help each other when needed.", "All of the above."], correctAnswer: "A", videoSrc: "video_set1_3.mp4" },
+                { id: 4, question: "Sometimes, we make mistakes. What can we do afterwards to make things right?", options: ["Say sorry and try to fix what went wrong.", "Learn from the mistake and do better next time.", "Both a and b.", "Neither, just pretend it didn't happen."], correctAnswer: "A", videoSrc: "video_set1_4.mp4" }
+            ],
+            [
+                { id: 5, question: "Sometimes, life can be challenging. What helps you stay strong and hopeful?", options: ["Spending time with loved ones.", "Staying positive and keeping faith in God.", "Knowing that challenges can teach us things.", "Keeping yourself cut from the world"], correctAnswer: "A", videoSrc: "video_set2_1.mp4" },
+                { id: 6, question: "What can you do to forgive yourself and others when mistakes happen?", options: ["Learn from them and try to do better next time.", "Understand that everyone makes mistakes.", "Talk about it with someone you trust.", "Forget and forgive."], correctAnswer: "A", videoSrc: "video_set2_2.mp4" },
+                { id: 7, question: "When you feel nervous about an upcoming test at school, what helps you feel calm and confident?", options: ["Asking for help from your teacher or classmates", "Taking deep breaths and reminding yourself of your strengths", "Run away from the test.", "Remembering everyone feels nervous sometimes."], correctAnswer: "A", videoSrc: "video_set2_3.mp4" },
+                { id: 8, question: "If you could write a message on a shooting star, what would you ask for?", options: ["A message of love for your family", "Keep yourself positive and hopeful no matter what", "A message of peace for the world", "Better marks than friends in the school"], correctAnswer: "A", videoSrc: "video_set2_4.mp4" },
+            ],
+            [
+                { id: 9, question: "How does your inner self perceive the concept of time?", options: ["Constantly worrying about the past or future", "Embracing the present moment with mindfulness", "Planning meticulously for future events", "Ignoring the concept of time and living spontaneously"], correctAnswer: "A", videoSrc: "video_set3_1.mp4" },
+                { id: 10, question: "Someone criticizes your work. You feel:", options: ["Deflated and question your competence", "Defensive and argue your point of view", "Open to understanding the feedback and learning from it", "Indifferent, as their opinion doesn't define your worth"], correctAnswer: "A", videoSrc: "video_set3_2.mp4" },
+                { id: 11, question: "When reflecting on your past, you focus on:", options: ["The regrets and missed opportunities", "The triumphs and lessons learned", "A mix of both, accepting the journey as a whole", "The present moment and future possibilities"], correctAnswer: "A", videoSrc: "video_set3_3.mp4" },
+                { id: 12, question: "When reflecting on your past, you focus on:", options: ["The regrets and missed opportunities", "The triumphs and lessons learned", "A mix of both, accepting the journey as a whole", "The present moment and future possibilities"], correctAnswer: "A", videoSrc: "video_set3_4.mp4" },
+            ],
+            // Add more question sets as needed
+        ];
 
         const questionSets = [
             [
@@ -139,7 +203,7 @@
                 feedbackElement.textContent = "";
             } else {
                 window.location.href = "thanks.html?index=" + currentSetIndex;
-               <!-- document.getElementById('question-container').innerHTML = `<h1>${getUniqueThanksMessage(currentSetIndex)}</h1>`;--> 
+                <!-- document.getElementById('question-container').innerHTML = `<h1>${getUniqueThanksMessage(currentSetIndex)}</h1>`;-- 
             }
         }
 

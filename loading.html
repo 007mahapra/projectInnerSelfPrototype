@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auto Play Video</title>
+<style>
+  /* Hide video controls */
+  video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
+   
+  }
+  body{
+    background-image: url("futursitic_backdrop.jpg");
+        background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Optional: This will fix the background image in place */
+
+  }
+</style>
+</head>
+<body>
+  <!-- Video element with autoplay -->
+  <video id="video" autoplay muted>
+    <source src="Inner Self Loading Page.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <script>
+    // Get video element
+    var video = document.getElementById("video");
+
+    // Redirect function
+    function redirectToNextPage() {
+      window.location.href ="random.html";
+    }
+
+    // Redirect to next page when video ends
+    video.onended = redirectToNextPage;
+  </script>
+</body>
+</html>
